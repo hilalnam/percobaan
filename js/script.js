@@ -1,96 +1,106 @@
-// ===== Helpers =====
-function setText(id, text) {
-  const el = document.getElementById(id);
-  if (el) el.textContent = text;
-}
-
-function clearErrors() {
-  setText("errName", "");
-  setText("errEmail", "");
-  setText("errPhone", "");
-  setText("errMsg", "");
-}
-
-function isValidEmail(email) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
-function isValidPhone(phone) {
-  // Only digits, 10-13 length
-  return /^\d{10,13}$/.test(phone);
-}
-
-// ===== Navbar toggle (mobile) =====
+// NAVBAR toggle 
 const navToggle = document.getElementById("navToggle");
 const navMenu = document.getElementById("navMenu");
 
 if (navToggle && navMenu) {
   navToggle.addEventListener("click", () => {
-    navMenu.classList.toggle("is-open");
+    const open = navMenu.classList.toggle("is-open");
+    navToggle.setAttribute("aria-expanded", open ? "true" : "false");
   });
 
-  // close menu when clicking a link
+  // close menu when clicking a link 
   navMenu.querySelectorAll("a").forEach((a) => {
-    a.addEventListener("click", () => navMenu.classList.remove("is-open"));
+    a.addEventListener("click", () => {
+      navMenu.classList.remove("is-open");
+      navToggle.setAttribute("aria-expanded", "false");
+    });
   });
 }
 
-// ===== Welcome name logic =====
-function applyName(name) {
-  const cleaned = (name || "").trim();
-  setText("displayName", cleaned.length ? cleaned : "Guest");
+// HELPER
+const $ = (id) => document.getElementById(id);
+
+const displayName = $("displayName");
+
+// Form elements
+const form = $("contactForm");
+const fullName = $("fullName");
+const email = $("email");
+const phone = $("phone");
+const messageText = $("messageText");
+
+// Error elements
+const errName = $("errName");
+const errEmail = $("errEmail");
+const errPhone = $("errPhone");
+const errMsg = $("errMsg");
+
+// Result elements
+const resName = $("resName");
+const resEmail = $("resEmail");
+const resPhone = $("resPhone");
+const resMsg = $("resMsg");
+const resTime = $("resTime");
+
+function setError(el, msg) {
+  if (el) el.textContent = msg || "";
 }
 
-window.addEventListener("DOMContentLoaded", () => {
-  // Ask name on first load 
-  const userName = window.prompt("Hi! What's your name?");
-  applyName(userName);
-});
+function isValidEmail(v) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+}
 
-// ===== Form validation + show submitted value =====
-const form = document.getElementById("contactForm");
+function isValidPhone(v) {
+  // accept: 08xxxx, +62xxxx, digits only (min 9)
+  const cleaned = v.replace(/[\s-]/g, "");
+  return /^(\+62|62|0)\d{8,14}$/.test(cleaned);
+}
+
+function setGreeting(name) {
+  if (!displayName) return;
+  const clean = (name || "").trim();
+  displayName.textContent = clean ? clean : "Guest";
+}
 
 if (form) {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    clearErrors();
 
-    const fullName = document.getElementById("fullName").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const phone = document.getElementById("phone").value.trim();
-    const messageText = document.getElementById("messageText").value.trim();
+    // clean old errors
+    setError(errName, "");
+    setError(errEmail, "");
+    setError(errPhone, "");
+    setError(errMsg, "");
 
-    let valid = true;
+    const nameVal = fullName.value.trim();
+    const emailVal = email.value.trim();
+    const phoneVal = phone.value.trim();
+    const msgVal = messageText.value.trim();
 
-    if (fullName.length < 3) {
-      setText("errName", "Name must be at least 3 characters.");
-      valid = false;
-    }
+    let ok = true;
 
-    if (!isValidEmail(email)) {
-      setText("errEmail", "Please enter a valid email address.");
-      valid = false;
-    }
+    if (!nameVal) { setError(errName, "Name is required."); ok = false; }
+    if (!emailVal) { setError(errEmail, "Email is required."); ok = false; }
+    else if (!isValidEmail(emailVal)) { setError(errEmail, "Email format is invalid."); ok = false; }
 
-    if (!isValidPhone(phone)) {
-      setText("errPhone", "Phone must be 10–13 digits (numbers only).");
-      valid = false;
-    }
+    if (!phoneVal) { setError(errPhone, "Phone number is required."); ok = false; }
+    else if (!isValidPhone(phoneVal)) { setError(errPhone, "Phone format is invalid (ex: 08..., +62...)."); ok = false; }
 
-    if (messageText.length < 5) {
-      setText("errMsg", "Message must be at least 5 characters.");
-      valid = false;
-    }
+    if (!msgVal) { setError(errMsg, "Message is required."); ok = false; }
 
-    if (!valid) return;
+    if (!ok) return;
 
-    // Show values on HTML
-    setText("resName", fullName);
-    setText("resEmail", email);
-    setText("resPhone", phone);
-    setText("resMsg", messageText);
-    setText("resTime", new Date().toLocaleString());
+    // Fill Submitted Data
+    resName.textContent = nameVal;
+    resEmail.textContent = emailVal;
+    resPhone.textContent = phoneVal;
+    resMsg.textContent = msgVal;
+    resTime.textContent = new Date().toLocaleString("id-ID");
 
+    // Update greeting on HERO
+    setGreeting(nameVal);
+
+    // optional: reset form after submit
     form.reset();
   });
 }
