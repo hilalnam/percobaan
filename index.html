@@ -13,7 +13,7 @@
     <nav class="nav container">
       <a href="#home" class="brand">PadiMart</a>
 
-      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
 
       <ul class="nav__menu" id="navMenu">
         <li><a href="#home">Home</a></li>
@@ -26,7 +26,7 @@
   </header>
 
   <main>
-    <!-- HERO / HOME -->
+    <!-- HERO -->
     <section id="home" class="hero">
       <div class="container hero__content reveal">
         <p class="hero__kicker">B2B Rice Supply Platform</p>
@@ -46,7 +46,6 @@
           <a class="btn" href="#message">Contact Sales</a>
           <a class="btn btn--ghost" href="#profile">Explore Profile</a>
         </div>
-
       </div>
     </section>
 
@@ -54,13 +53,12 @@
     <section id="profile" class="section">
       <div class="container reveal">
         <h2 class="section__title">Our Profile</h2>
-        <p class="section__desc">
-          Company profile PadiMart: banner, about, vision, and mission.
-        </p>
+        <p class="section__desc">Company profile PadiMart: banner, about, vision, and mission.</p>
 
         <div class="profile">
+          <!-- PURE IMAGE ) -->
           <div class="profile__banner">
-            <img class="profile__bannerImg" src="img/karawang.jpg" alt="PadiMart banner" />
+            <img class="profile__bannerImg" src="img/profile.jpg" alt="PadiMart banner" />
           </div>
 
           <div class="profile__grid">
@@ -71,7 +69,7 @@
                 <strong>penjual beras (B2B)</strong> seperti warung beras, reseller, toko sembako, dan distributor.
                 Berawal dari <strong>Karawang</strong> sebagai sentra produksi padi, PadiMart menghadirkan beras dengan standar kualitas terkurasi
                 berdasarkan <strong>grade</strong>, <strong>aroma</strong>, dan <strong>kadar patah</strong>,
-                serta memperluas jangkauan distribusi untuk pengiriman lintas pulau melalui mitra logistik dan gudang.
+                serta memperluas jangkauan distribusi untuk pengiriman lintas pulau.
               </p>
 
               <ul class="list">
@@ -95,7 +93,7 @@
                 <li>Mempermudah penjual beras mengelola stok lewat pemesanan online yang cepat dan rapi.</li>
                 <li>Memperluas distribusi lintas pulau melalui jaringan gudang dan mitra logistik.</li>
                 <li>Mendukung repeat order dan pengiriman terjadwal untuk kestabilan suplai.</li>
-                <li>Memberikan layanan pelanggan B2B yang responsif untuk status kirim dan komplain kualitas.</li>
+                <li>Memberikan layanan pelanggan B2B yang responsif.</li>
               </ol>
             </div>
           </div>
@@ -103,52 +101,47 @@
       </div>
     </section>
 
-    <!-- HEADQUARTER -->
+    <!-- HQ -->
     <section id="hq" class="section section--alt">
       <div class="container reveal">
         <h2 class="section__title">Our Headquarter</h2>
-        <p class="section__desc">
-          Hub utama untuk sourcing, distribusi, dan pengiriman lintas pulau.
-        </p>
+        <p class="section__desc">Hub utama untuk sourcing, distribusi, dan pengiriman lintas pulau.</p>
 
         <div class="hq">
-            <div class="hq__item">
-                <div class="hq__circle">
-                    <img src="img/karawang.jpg" alt="Karawang" />
-                </div>
-                <p><strong>Karawang</strong><br><span class="muted">Sourcing & Quality Control</span></p>
+          <div class="hq__item">
+            <div class="hq__circle">
+              <img src="img/karawang.jpg" alt="Karawang" />
             </div>
+            <p><strong>Karawang</strong><br><span class="muted">Sourcing & Quality Control</span></p>
+          </div>
 
-            <div class="hq__item">
-                <div class="hq__circle">
-                    <img src="img/jakarta.jpg" alt="Jakarta" />
-                </div>
-                <p><strong>Jakarta</strong><br><span class="muted">Distribution Hub</span></p>
+          <div class="hq__item">
+            <div class="hq__circle">
+              <img src="img/jakarta.jpg" alt="Jakarta" />
             </div>
-            <div class="hq__item">
-                <div class="hq__circle">
-                <img src="img/makasar.jpg" alt="Makasar" />
-                </div>
-                <p><strong>Makasar</strong><br><span class="muted">East Hub</span></p>
+            <p><strong>Jakarta</strong><br><span class="muted">Distribution Hub</span></p>
+          </div>
+
+          <div class="hq__item">
+            <div class="hq__circle">
+              <img src="img/makasar.jpg" alt="Makasar" />
             </div>
+            <p><strong>Makasar</strong><br><span class="muted">East Hub</span></p>
+          </div>
         </div>
-
+      </div>
     </section>
 
-    <!-- FOR SELLERS (B2B) -->
+    <!-- FOR SELLERS -->
     <section id="sellers" class="section">
       <div class="container reveal">
         <h2 class="section__title">For Sellers (B2B)</h2>
-        <p class="section__desc">
-          Dirancang untuk penjual beras yang butuh stok stabil, kualitas konsisten, dan pengiriman terjadwal.
-        </p>
+        <p class="section__desc">Dirancang untuk penjual beras yang butuh stok stabil, kualitas konsisten, dan pengiriman terjadwal.</p>
 
         <div class="b2b">
           <div class="card">
             <h3>Wholesale & Repeat Order</h3>
-            <p class="muted">
-              Pemesanan grosir yang fleksibel untuk kebutuhan toko. Cocok untuk repeat order mingguan/bulanan.
-            </p>
+            <p class="muted">Pemesanan grosir fleksibel untuk kebutuhan toko. Cocok untuk repeat order mingguan/bulanan.</p>
             <ul class="list">
               <li>MOQ menyesuaikan area & ketersediaan</li>
               <li>Pengiriman terjadwal</li>
@@ -158,9 +151,7 @@
 
           <div class="card">
             <h3>Quality Spec (Terukur)</h3>
-            <p class="muted">
-              Standar kualitas yang jelas untuk menjaga konsistensi penjualan.
-            </p>
+            <p class="muted">Standar kualitas yang jelas untuk menjaga konsistensi penjualan.</p>
             <ul class="list">
               <li>Grade</li>
               <li>Aroma</li>
@@ -170,9 +161,7 @@
 
           <div class="card">
             <h3>Coverage Lintas Pulau</h3>
-            <p class="muted">
-              Berawal dari Karawang dengan jaringan distribusi untuk pengiriman ke berbagai wilayah Indonesia.
-            </p>
+            <p class="muted">Berawal dari Karawang dengan jaringan distribusi untuk pengiriman ke berbagai wilayah Indonesia.</p>
             <ul class="list">
               <li>Karawang (Sourcing & QC)</li>
               <li>Jakarta (Distribution Hub)</li>
@@ -187,12 +176,9 @@
     <section id="message" class="section section--alt">
       <div class="container reveal">
         <h2 class="section__title">Message Us</h2>
-        <p class="section__desc">
-          Isi form di bawah. JavaScript akan validasi input dan menampilkan hasil submit di halaman.
-        </p>
+        <p class="section__desc">Isi form di bawah. Setelah submit: validasi, tampilkan hasil, dan salam di Home ikut berubah.</p>
 
         <div class="message">
-          <!-- FORM -->
           <form id="contactForm" class="card" novalidate>
             <div class="field">
               <label for="fullName">Name</label>
@@ -222,7 +208,6 @@
             <p class="muted mt-sm">Note: This is client-side validation only.</p>
           </form>
 
-          <!-- RESULT -->
           <aside class="card">
             <h3>Submitted Data</h3>
             <p class="muted">After submit, values will appear here.</p>
